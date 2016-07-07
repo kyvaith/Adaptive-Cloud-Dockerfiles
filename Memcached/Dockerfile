@@ -1,9 +1,6 @@
 FROM centos:7
 MAINTAINER OiSiS <oisis@o2.pl>
 
-# Copy our Memcached rpm into the cointainer
-#COPY memcached-1.4.28-1.el7.centos.x86_64.rpm /tmp/memcached-1.4.28-1.el7.centos.x86_64.rpm
-
 ENV MEMCACHED_USER=nobody
 
 # Add Kyvaith repo
@@ -16,11 +13,7 @@ RUN yum update -y
 # Install deps for memcached
 RUN yum -y install libevent perl systemd-sysv which memcached-1.4.28
 
-# Install memcached
-#RUN rpm -ihv /tmp/memcached-1.4.28-1.el7.centos.x86_64.rpm
-
 # Clean up:
-#RUN rm -f /tmp/memcached-1.4.28-1.el7.centos.x86_64.rpm
 RUN yum clean all
 
 COPY entrypoint.sh /sbin/entrypoint.sh
