@@ -1,5 +1,5 @@
 1. Build Memcached docker image:
-docker build -t kyvaith/memcached
+docker build -t kyvaith/memcached .
 
 2. Run Memcached in docker:
 docker run --name memcached --restart=always -it -d -p 11211:11211 kyvaith/memcached \
