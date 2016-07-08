@@ -15,6 +15,8 @@ RUN yum -y install libevent perl systemd-sysv which memcached-1.4.28
 
 # Clean up:
 RUN yum clean all
+RUN rm -rf /var/cache/*
+RUN echo "" > /var/log/yum.log
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
