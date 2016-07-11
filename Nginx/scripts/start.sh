@@ -25,5 +25,7 @@ if [[ "$TEMPLATE_NGINX_HTML" == "1" ]] ; then
   done
 fi
 
+/opt/remi/php70/root/usr/sbin/php-fpm -c /etc/opt/remi/php70
+
 # Start supervisord and services
 /usr/bin/supervisord -n -c /etc/supervisord.conf
