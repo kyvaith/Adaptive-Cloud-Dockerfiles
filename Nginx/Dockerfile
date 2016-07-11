@@ -5,6 +5,8 @@ MAINTAINER OiSiS <oisis@o2.pl>
 # Clean up first
 RUN yum clean all
 
+RUN rpm -e fakesystemd --nodeps
+
 # Install epel repo - needed by REMI repo
 RUN yum -y install epel-release.noarch
 
@@ -18,10 +20,15 @@ RUN yum -y install php70-php-fpm php70-php-common php70-php-json php70-runtime p
   php70-php-mbstring php70-php-mcrypt php70-php-pecl-memcache php70-php-pecl-memcached \
   php70-php-mysqlnd php70-php-mysqlnd php70-php-pdo php70-php-pspell php70-php-soap \
   php70-php-tidy php70-php-xmlrpc php70-php-opcache php70-php-pecl-zip
+# Setup PHP
+RUN rm -f /etc/opt/remi/php70/php-fpm.d/www.conf \
+    rm -f /etc/opt/remi/php70/php-fpm.conf
+    ADD conf/php70/php-fpm.conf /etc/opt/remi/php70/
+    ADD conf/php70/www.conf /etc/opt/remi/php70/php-fpm.d/
 
 # Install and add Supervisor conf::
-ADD conf/supervisor/supervisord.conf /etc/supervisord.conf
 RUN yum -y install supervisor
+ADD conf/supervisor/supervisord.conf /etc/supervisord.conf
 
 # Install and config Nginx:
 RUN yum -y install nginx
@@ -42,6 +49,12 @@ RUN chmod 755 /start.sh
 # copy in code
 ADD src/ /var/www/html/
 
+# Clean up:
+RUN yum clean all
+RUN rm -rf /var/cache/*
+RUN echo "" > /var/log/yum.log
+
 EXPOSE 443 80
 
+#CMD ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 CMD ["/start.sh"]
