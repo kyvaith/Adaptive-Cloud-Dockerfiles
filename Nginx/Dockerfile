@@ -1,20 +1,6 @@
 FROM centos:7.1.1503
 MAINTAINER OiSiS <oisis@o2.pl>
 
-# Śmieci po Alpine Linux:
-#
-#ENV php_conf /etc/opt/remi/php70/php.ini
-#ENV fpm_conf /etc/php7/php-fpm.d/www.conf
-#ENV composer_hash e115a8dc7871f15d853148a7fbac7da27d6c0030b848d9b3dc09e2a0388afed865e6a3d6b3c0fad45c48e2b5fc1196ae
-#
-# Alpine linux install - extra tools
-# apk add --no-cache bash openssh-client wget nginx supervisor curl git
-#
-#php7 -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-#php7 -r "if (hash_file('SHA384', 'composer-setup.php') === '${composer_hash}') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
-#php7 composer-setup.php --install-dir=/usr/bin --filename=composer && \
-#php7 -r "unlink('composer-setup.php');"
-
 ################################
 # Clean up first
 RUN yum clean all
@@ -34,8 +20,8 @@ RUN yum -y install php70-php-fpm php70-php-common php70-php-json php70-runtime p
   php70-php-tidy php70-php-xmlrpc php70-php-opcache php70-php-pecl-zip
 
 # Install and add Supervisor conf::
-RUN yum -y install supervisor
 ADD conf/supervisor/supervisord.conf /etc/supervisord.conf
+RUN yum -y install supervisor
 
 # Install and config Nginx:
 RUN yum -y install nginx
@@ -58,5 +44,4 @@ ADD src/ /var/www/html/
 
 EXPOSE 443 80
 
-#CMD ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 CMD ["/start.sh"]
