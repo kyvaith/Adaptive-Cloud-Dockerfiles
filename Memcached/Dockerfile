@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:7.1.1503
 MAINTAINER OiSiS <oisis@o2.pl>
 
 ENV MEMCACHED_USER=nobody
