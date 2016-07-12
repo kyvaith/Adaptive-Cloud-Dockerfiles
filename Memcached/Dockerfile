@@ -7,8 +7,10 @@ ENV MEMCACHED_USER=nobody
 RUN curl -s http://download.opensuse.org/repositories/home:/kyvaith:/Adaptive-Cloud/CentOS_7/home:kyvaith:Adaptive-Cloud.repo -o /etc/yum.repos.d/Adaptive-Cloud.repo
 
 # Setup Memcached
-RUN rpm -Uvh http://mirror.metrocast.net/fedora/epel/7/x86_64/e/epel-release-7-7.noarch.rpm
-RUN yum update -y
+RUN yum -y install epel-release.noarch
+
+# Remove fakesystemd
+RUN rpm -e fakesystemd --nodeps
 
 # Install deps for memcached
 RUN yum -y install libevent perl systemd-sysv which memcached-1.4.28
