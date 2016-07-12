@@ -39,6 +39,7 @@ RUN mkdir -p /var/run/nginx
 RUN mkdir -p /etc/nginx/sites-available/
 RUN mkdir -p /etc/nginx/sites-enabled/
 RUN mkdir -p /etc/nginx/ssl/
+RUN mkdir -p /etc/nginx/extra.conf.d/
 ADD conf/nginx/nginx-site.conf /etc/nginx/sites-available/default.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
@@ -47,14 +48,19 @@ ADD scripts/start.sh /start.sh
 RUN chmod 755 /start.sh
 
 # copy in code
-ADD src/ /var/www/html/
+#ADD src/ /var/www/html/
 
 # Clean up:
 RUN yum clean all
 RUN rm -rf /var/cache/*
 RUN echo "" > /var/log/yum.log
 
+# Expose ports
 EXPOSE 443 80
+
+# Volumes to mount:
+VOLUME ["/var/www/html"]
+VOLUME ["/etc/nginx/extra.conf.d/"]
 
 #CMD ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 CMD ["/start.sh"]
