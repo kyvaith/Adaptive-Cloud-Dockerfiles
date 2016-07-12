@@ -34,8 +34,8 @@ ADD conf/supervisor/supervisord.conf /etc/supervisord.conf
 RUN yum -y install nginx
 RUN rm -Rf /etc/nginx/nginx.conf
 ADD conf/nginx/nginx.conf /etc/nginx/nginx.conf
-RUN mkdir -p /var/www/html  #--> from /var/www/app
-RUN mkdir -p /var/run/nginx #--> from /run/nginx
+RUN mkdir -p /var/www/html
+RUN mkdir -p /var/run/nginx
 RUN mkdir -p /etc/nginx/sites-available/
 RUN mkdir -p /etc/nginx/sites-enabled/
 RUN mkdir -p /etc/nginx/ssl/
