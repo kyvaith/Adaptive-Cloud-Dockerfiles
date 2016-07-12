@@ -1,10 +1,10 @@
 FROM centos:7.1.1503
 MAINTAINER OiSiS <oisis@o2.pl>
 
-################################
 # Clean up first
 RUN yum clean all
 
+# Remove fakesystemd and replace with full systemd
 RUN rpm -e fakesystemd --nodeps
 
 # Install epel repo - needed by REMI repo
@@ -26,7 +26,7 @@ RUN rm -f /etc/opt/remi/php70/php-fpm.d/www.conf \
     ADD conf/php70/php-fpm.conf /etc/opt/remi/php70/
     ADD conf/php70/www.conf /etc/opt/remi/php70/php-fpm.d/
 
-# Install and add Supervisor conf::
+# Install and configure Supervisor:
 RUN yum -y install supervisor
 ADD conf/supervisor/supervisord.conf /etc/supervisord.conf
 
