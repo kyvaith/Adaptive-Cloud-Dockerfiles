@@ -6,7 +6,7 @@ TEMPLATE_NGINX_HTML - nadpisywanie zminnych nginx - nie polecane
 Build:
 docker build -t kyvaith/nginx-php-fpm .
 Run:
-docker run --name nginx-php -it -d -p 8001:80 -p 443:8443 -v /home/docker/hosting1/html:/var/www/html -v /home/docker/hosting1/extra.conf.d:/etc/nginx/extra.conf.d/ kyvaith/nginx-php-fpm
+docker run --name nginx-php -it -d -p 8001:80 -p 8443:443 -v /home/docker/hosting1/html:/var/www/html -v /home/docker/hosting1/extra.conf.d:/etc/nginx/extra.conf.d/ kyvaith/nginx-php-fpm
 
 Export/Import docker containers:
 1. Export to tar file:
