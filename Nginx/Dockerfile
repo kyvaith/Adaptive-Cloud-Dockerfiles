@@ -62,5 +62,5 @@ EXPOSE 443 80
 VOLUME ["/var/www/html"]
 VOLUME ["/etc/nginx/extra.conf.d/"]
 
-#CMD ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
+# Command to run
 CMD ["/start.sh"]
