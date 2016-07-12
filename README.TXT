@@ -1,4 +1,4 @@
-1. Attache to running cointainer:
+1. Attach to running cointainer:
 docker exec -i -t 407a4d2ddd9e /bin/bash
 2. Run containers with composer:
 docker-compose up -d
