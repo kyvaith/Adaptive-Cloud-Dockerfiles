@@ -13,3 +13,5 @@ Export/Import docker containers:
 docker export memcached > /vagrant/tmp/memcached_last.tar
 2. Import from tar file:
 cat ./memcached_last.tar | docker import - memcached:new
+3. Save image to file:
+docker save -o /vagrant/tmp/nginx-php-fpm_last.tar 9ca0acd0816f
