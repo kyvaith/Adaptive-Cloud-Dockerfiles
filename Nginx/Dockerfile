@@ -36,7 +36,7 @@ RUN rm -Rf /etc/nginx/nginx.conf
 ADD conf/nginx/nginx.conf /etc/nginx/nginx.conf
 RUN mkdir -p /var/www/html
 RUN chmod 775 /var/www/html
-RUN chown -R nginx:nginx /var/www/html
+RUN chown -R nobody:nobody /var/www/html
 RUN mkdir -p /var/run/nginx
 RUN mkdir -p /etc/nginx/sites-available/
 RUN mkdir -p /etc/nginx/sites-enabled/
