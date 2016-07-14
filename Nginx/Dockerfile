@@ -49,9 +49,6 @@ RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/defau
 ADD scripts/start.sh /start.sh
 RUN chmod 755 /start.sh
 
-# copy in code
-#ADD src/ /var/www/html/
-
 # Clean up:
 RUN yum clean all
 RUN rm -rf /var/cache/*
