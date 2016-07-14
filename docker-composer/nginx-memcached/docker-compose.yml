@@ -1,8 +1,8 @@
-memcached:
+example1com-memcached:
   build: ../../Memcached/
   command: /usr/bin/memcached
 
-nginx-php-fpm:
+example1com-nginx:
   build: ../../Nginx/
   command: /start.sh
   volumes:
@@ -15,4 +15,25 @@ nginx-php-fpm:
     - 80
     - 443
   links:
-    - memcached
+    - example1com-memcached
+
+
+
+example2com-memcached:
+  build: ../../Memcached/
+  command: /usr/bin/memcached
+
+example2com-nginx:
+  build: ../../Nginx/
+  command: /start.sh
+  volumes:
+    - "/home/hostings/example2.com/html:/var/www/html:rw"
+    - "/home/hostings/example2.com/extra.conf.d:/etc/nginx/extra.conf.d/:rw"
+  ports:
+    - "9002:80"
+    - "9444:443"
+  expose:
+    - 80
+    - 443
+  links:
+    - example2com-memcached
