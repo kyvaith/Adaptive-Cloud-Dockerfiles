@@ -1,21 +1,16 @@
 memcached:
   build: ../../Memcached/
   command: /usr/bin/memcached
-  ports:
-   - "11211:11211"
-  expose:
-    - 11211/tcp
-    - 11211/udp
 
 nginx-php-fpm:
   build: ../../Nginx/
   command: /start.sh
   volumes:
-    - "/home/docker/hosting1/html:/var/www/html:rw"
-    - "/home/docker/hosting1/extra.conf.d/:/etc/nginx/extra.conf.d/:rw"
+    - "/home/hostings/example1.com/html:/var/www/html:rw"
+    - "/home/hostings/example1.com/extra.conf.d:/etc/nginx/extra.conf.d/:rw"
   ports:
-    - "8001:80"
-    - "8443:443"
+    - "9001:80"
+    - "9443:443"
   expose:
     - 80
     - 443
