@@ -15,7 +15,7 @@ example1com-nginx:
     - 80
     - 443
   links:
-    - example1com-memcached
+    - example1com-memcached:memcached
 
 example2com-memcached:
   build: ../../Memcached/
@@ -34,4 +34,4 @@ example2com-nginx:
     - 80
     - 443
   links:
-    - example2com-memcached
+    - example2com-memcached:memcached
