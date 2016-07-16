@@ -11,7 +11,6 @@ services:
   example1com-memcached:
     build: ../../Memcached/
     command: /usr/bin/memcached -m 8 -c 256 -b 256 -R 200 -t 4 -n 72 -f 1.25 -o modern
-
   example1com-nginx:
     build: ../../Nginx/
     command: /start.sh
@@ -28,7 +27,6 @@ services:
   example2com-memcached:
     build: ../../Memcached/
     command: /usr/bin/memcached -m 8 -c 256 -b 256 -R 200 -t 4 -n 72 -f 1.25 -o modern
-
   example2com-nginx:
     build: ../../Nginx/
     command: /start.sh
