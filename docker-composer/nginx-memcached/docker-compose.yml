@@ -4,6 +4,7 @@ services:
   nginx-proxy:
     image: jwilder/nginx-proxy
     container_name: nginx-proxy
+    restart: always
     ports:
       - "9000:80"
     volumes:
@@ -16,6 +17,7 @@ services:
     build: ../../Nginx/
     command: /start.sh
     container_name: example1.com
+    restart: always
     volumes:
       - "/home/hostings/example1.com/html:/var/www/html:rw"
       - "/home/hostings/example1.com/extra.conf.d:/etc/nginx/extra.conf.d/:rw"
@@ -28,10 +30,12 @@ services:
   example2com-memcached:
     build: ../../Memcached/
     command: /usr/bin/memcached -m 8 -c 256 -b 256 -R 200 -t 4 -n 72 -f 1.25 -o modern
+    restart: always
   example2com-nginx:
     build: ../../Nginx/
     command: /start.sh
     container_name: example2.com
+    restart: always
     volumes:
       - "/home/hostings/example2.com/html:/var/www/html:rw"
       - "/home/hostings/example2.com/extra.conf.d:/etc/nginx/extra.conf.d/:rw"
@@ -44,10 +48,12 @@ services:
   example3com-memcached:
     build: ../../Memcached/
     command: /usr/bin/memcached -m 8 -c 256 -b 256 -R 200 -t 4 -n 72 -f 1.25 -o modern
+    restart: always
   example3com-nginx:
     build: ../../Nginx/
     command: /start.sh
     container_name: example3.com
+    restart: always
     volumes:
       - "/home/hostings/example3.com/html:/var/www/html:rw"
       - "/home/hostings/example3.com/extra.conf.d:/etc/nginx/extra.conf.d/:rw"
