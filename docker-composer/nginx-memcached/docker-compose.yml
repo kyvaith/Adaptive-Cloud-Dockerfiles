@@ -13,6 +13,8 @@ services:
   example1com-memcached:
     build: ../../Memcached/
     command: /usr/bin/memcached -m 8 -c 256 -b 256 -R 200 -t 4 -n 72 -f 1.25 -o modern
+    restart: always
+    container_name: example1.com-mc
   example1com-nginx:
     build: ../../Nginx/
     command: /start.sh
@@ -31,6 +33,7 @@ services:
     build: ../../Memcached/
     command: /usr/bin/memcached -m 8 -c 256 -b 256 -R 200 -t 4 -n 72 -f 1.25 -o modern
     restart: always
+    container_name: example2.com-mc
   example2com-nginx:
     build: ../../Nginx/
     command: /start.sh
@@ -49,6 +52,7 @@ services:
     build: ../../Memcached/
     command: /usr/bin/memcached -m 8 -c 256 -b 256 -R 200 -t 4 -n 72 -f 1.25 -o modern
     restart: always
+    \container_name: example3.com-mc
   example3com-nginx:
     build: ../../Nginx/
     command: /start.sh
