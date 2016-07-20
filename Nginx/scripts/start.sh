@@ -25,6 +25,7 @@ if [[ "$TEMPLATE_NGINX_HTML" == "1" ]] ; then
   done
 fi
 
+# Lets run temporary php from stat.sh script
 /opt/remi/php70/root/usr/sbin/php-fpm -c /etc/opt/remi/php70
 
 # We have to create this directory for Nginx
