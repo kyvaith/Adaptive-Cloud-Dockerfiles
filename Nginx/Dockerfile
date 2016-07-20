@@ -31,16 +31,15 @@ RUN yum -y install supervisor
 ADD conf/supervisor/supervisord.conf /etc/supervisord.conf
 
 # Install and config Nginx:
-RUN yum -y install nginx
+RUN curl -s "http://download.opensuse.org/repositories/home:/kyvaith:/Adaptive-Cloud/CentOS_7/home:kyvaith:Adaptive-Cloud.repo" -o /etc/yum.repos.d/Adaptive-Cloud.repo
+RUN yum -y install nginx-1.11.2
 RUN rm -Rf /etc/nginx/nginx.conf
 ADD conf/nginx/nginx.conf /etc/nginx/nginx.conf
 RUN mkdir -p /var/www/html
 RUN chmod 775 /var/www/html
 RUN chown -R nobody:nobody /var/www/html
 RUN mkdir -p /var/run/nginx
-RUN mkdir -p /etc/nginx/sites-available/
-RUN mkdir -p /etc/nginx/sites-enabled/
-RUN mkdir -p /etc/nginx/extra.conf.d/
+RUN mkdir -p /etc/nginx/{sites-available,sites-enabled,extra.conf.d}
 ADD conf/nginx/nginx-site.conf /etc/nginx/sites-available/default.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
