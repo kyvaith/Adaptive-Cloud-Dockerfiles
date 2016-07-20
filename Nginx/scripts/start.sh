@@ -27,5 +27,9 @@ fi
 
 /opt/remi/php70/root/usr/sbin/php-fpm -c /etc/opt/remi/php70
 
+# We have to create this directory for Nginx
+mkdir -p /var/cache/nginx/client_temp
+chown -R nobody:nobody /var/cache/nginx
+
 # Start supervisord and services
 /usr/bin/supervisord -n -c /etc/supervisord.conf
