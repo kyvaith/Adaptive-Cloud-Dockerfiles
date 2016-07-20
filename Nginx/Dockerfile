@@ -40,7 +40,6 @@ RUN chown -R nobody:nobody /var/www/html
 RUN mkdir -p /var/run/nginx
 RUN mkdir -p /etc/nginx/sites-available/
 RUN mkdir -p /etc/nginx/sites-enabled/
-RUN mkdir -p /etc/nginx/ssl/
 RUN mkdir -p /etc/nginx/extra.conf.d/
 ADD conf/nginx/nginx-site.conf /etc/nginx/sites-available/default.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
