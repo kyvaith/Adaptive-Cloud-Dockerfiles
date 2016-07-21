@@ -20,11 +20,12 @@ RUN yum -y install php70-php-fpm php70-php-common php70-php-json php70-runtime p
   php70-php-mbstring php70-php-mcrypt php70-php-pecl-memcache php70-php-pecl-memcached \
   php70-php-mysqlnd php70-php-mysqlnd php70-php-pdo php70-php-pspell php70-php-soap \
   php70-php-tidy php70-php-xmlrpc php70-php-opcache php70-php-pecl-zip
+
 # Setup PHP
-RUN rm -f /etc/opt/remi/php70/php-fpm.d/www.conf \
-    rm -f /etc/opt/remi/php70/php-fpm.conf
-    ADD conf/php70/php-fpm.conf /etc/opt/remi/php70/
-    ADD conf/php70/www.conf /etc/opt/remi/php70/php-fpm.d/
+RUN rm -f /etc/opt/remi/php70/php-fpm.d/www.conf
+RUN rm -f /etc/opt/remi/php70/php-fpm.conf
+ADD conf/php70/php-fpm.conf /etc/opt/remi/php70/
+ADD conf/php70/www.conf /etc/opt/remi/php70/php-fpm.d/
 
 # Install and configure Supervisor:
 RUN yum -y install supervisor
@@ -41,7 +42,9 @@ RUN chown -R nobody:nobody /var/www/html
 RUN mkdir -p /var/run/nginx
 RUN mkdir -p /etc/nginx/{sites-available,sites-enabled,extra.conf.d}
 ADD conf/nginx/nginx-site.conf /etc/nginx/sites-available/default.conf
+ADD conf/nginx/nginx-ssl-site.conf /etc/nginx/sites-available/default-ssl.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
+RUN ln -s /etc/nginx/sites-available/default-ssl.conf /etc/nginx/sites-enabled/default-ssl.conf
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
