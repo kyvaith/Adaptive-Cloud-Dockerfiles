@@ -36,11 +36,10 @@ RUN curl -s "http://download.opensuse.org/repositories/home:/kyvaith:/Adaptive-C
 RUN yum -y install nginx-1.11.2
 RUN rm -Rf /etc/nginx/nginx.conf
 ADD conf/nginx/nginx.conf /etc/nginx/nginx.conf
-RUN mkdir -p /var/www/html
-RUN chmod 775 /var/www/html
-RUN chown -R nobody:nobody /var/www/html
+RUN mkdir -p /var/www/html && chmod 775 /var/www/html && chown -R nobody:nobody /var/www/html
 RUN mkdir -p /var/run/nginx
 RUN mkdir -p /etc/nginx/{sites-available,sites-enabled,extra.conf.d}
+COPY conf/nginx/extra.conf.d /etc/nginx/extra.conf.d
 ADD conf/nginx/nginx-site.conf /etc/nginx/sites-available/default.conf
 ADD conf/nginx/nginx-ssl-site.conf /etc/nginx/sites-available/default-ssl.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
