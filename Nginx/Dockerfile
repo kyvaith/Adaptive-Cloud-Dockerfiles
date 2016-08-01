@@ -38,7 +38,7 @@ RUN rm -Rf /etc/nginx/nginx.conf
 ADD conf/nginx/nginx.conf /etc/nginx/nginx.conf
 RUN mkdir -p /var/www/html && chmod 775 /var/www/html && chown -R nobody:nobody /var/www/html
 RUN mkdir -p /var/run/nginx
-RUN mkdir -p /etc/nginx/{sites-available,sites-enabled,extra.conf.d}
+RUN mkdir -p /etc/nginx/{sites-available,sites-enabled,extra.conf.d,certs}
 COPY conf/nginx/extra.conf.d /etc/nginx/extra.conf.d
 ADD conf/nginx/nginx-site.conf /etc/nginx/sites-available/default.conf
 ADD conf/nginx/nginx-ssl-site.conf /etc/nginx/sites-available/default-ssl.conf
