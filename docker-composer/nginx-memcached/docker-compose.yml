@@ -10,6 +10,8 @@ services:
       - "9443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      - DEFAULT_HOST=example1.com
 
   example1com-memcached:
     build: ../../Memcached/
