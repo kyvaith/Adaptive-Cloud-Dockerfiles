@@ -10,8 +10,21 @@ services:
       - "9443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /home/hostings/certs:/etc/nginx/certs:ro
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
     environment:
       - DEFAULT_HOST=example1.com
+
+  letsencrypt-nginx-proxy-companion:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt-nginx-proxy-companion
+    restart: always
+    volumes:
+      - /home/hostings/certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes_from:
+      - nginx-proxy
 
   example1com-memcached:
     build: ../../Memcached/
@@ -32,6 +45,9 @@ services:
       - VIRTUAL_HOST=example1.com
       - VIRTUAL_PORT=80
       - HTTPS_METHOD=noredirect
+      - LETSENCRYPT_HOST=example1.com
+      - LETSENCRYPT_EMAIL=admin@example.com
+      - DEBUG=true
 
   example2com-memcached:
     build: ../../Memcached/
@@ -51,6 +67,10 @@ services:
     environment:
       - VIRTUAL_HOST=example2.com
       - VIRTUAL_PORT=80
+      - HTTPS_METHOD=noredirect
+      - LETSENCRYPT_HOST=example1.com
+      - LETSENCRYPT_EMAIL=admin@example.com
+      - DEBUG=true
 
   example3com-memcached:
     build: ../../Memcached/
@@ -71,3 +91,6 @@ services:
       - VIRTUAL_HOST=example3.com
       - VIRTUAL_PORT=80
       - HTTPS_METHOD=noredirect
+      - LETSENCRYPT_HOST=example1.com
+      - LETSENCRYPT_EMAIL=admin@example.com
+      - DEBUG=true
