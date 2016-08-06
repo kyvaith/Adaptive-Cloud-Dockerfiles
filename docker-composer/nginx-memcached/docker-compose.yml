@@ -41,7 +41,7 @@ services:
     restart: always
     volumes:
       - "/home/hostings/example1.com/html:/var/www/html:rw"
-      - "/home/hostings/example1.com/extra.conf.d:/etc/nginx/extra.conf.d/:rw"
+#      - "/home/hostings/example1.com/extra.conf.d:/etc/nginx/extra.conf.d/:rw"
     links:
       - example1com-memcached:memcached
     environment:
@@ -69,7 +69,7 @@ services:
     restart: always
     volumes:
       - "/home/hostings/example2.com/html:/var/www/html:rw"
-      - "/home/hostings/example2.com/extra.conf.d:/etc/nginx/extra.conf.d/:rw"
+#      - "/home/hostings/example2.com/extra.conf.d:/etc/nginx/extra.conf.d/:rw"
     links:
       - example2com-memcached:memcached
     environment:
@@ -97,7 +97,7 @@ services:
     restart: always
     volumes:
       - "/home/hostings/example3.com/html:/var/www/html:rw"
-      - "/home/hostings/example3.com/extra.conf.d:/etc/nginx/extra.conf.d/:rw"
+#      - "/home/hostings/example3.com/extra.conf.d:/etc/nginx/extra.conf.d/:rw"
     links:
       - example3com-memcached:memcached
     environment:
