@@ -27,7 +27,7 @@ services:
       - nginx-proxy
 
   example1com-memcached:
-    build: ../../Memcached/
+    build: ./Memcached/
     command: /usr/bin/memcached -m 8 -c 256 -b 256 -R 200 -t 4 -n 72 -f 1.25 -o modern
     restart: always
     container_name: example1.com-mc
@@ -35,7 +35,7 @@ services:
       - nginx-proxy
       - letsencrypt-nginx-proxy-companion
   example1com-nginx:
-    build: ../../Nginx/
+    build: ./Nginx/
     command: /start.sh
     container_name: example1.com
     restart: always
@@ -55,7 +55,7 @@ services:
       - example1com-memcached
 
   example2com-memcached:
-    build: ../../Memcached/
+    build: ./Memcached/
     command: /usr/bin/memcached -m 8 -c 256 -b 256 -R 200 -t 4 -n 72 -f 1.25 -o modern
     restart: always
     container_name: example2.com-mc
@@ -63,7 +63,7 @@ services:
       - nginx-proxy
       - letsencrypt-nginx-proxy-companion
   example2com-nginx:
-    build: ../../Nginx/
+    build: ./Nginx/
     command: /start.sh
     container_name: example2.com
     restart: always
@@ -83,7 +83,7 @@ services:
       - example2com-memcached
 
   example3com-memcached:
-    build: ../../Memcached/
+    build: ./Memcached/
     command: /usr/bin/memcached -m 8 -c 256 -b 256 -R 200 -t 4 -n 72 -f 1.25 -o modern
     restart: always
     container_name: example3.com-mc
@@ -91,7 +91,7 @@ services:
       - nginx-proxy
       - letsencrypt-nginx-proxy-companion
   example3com-nginx:
-    build: ../../Nginx/
+    build: ./Nginx/
     command: /start.sh
     container_name: example3.com
     restart: always
