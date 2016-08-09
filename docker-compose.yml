@@ -2,7 +2,7 @@
 version: '2'
 services:
   nginx-proxy:
-    image: jwilder/nginx-proxy
+    build: ./Nginx-proxy/
     container_name: nginx-proxy
     restart: always
     ports:
