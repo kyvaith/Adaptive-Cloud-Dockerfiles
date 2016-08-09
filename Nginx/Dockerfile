@@ -42,7 +42,6 @@ RUN mkdir -p /etc/nginx/{sites-available,sites-enabled,extra.conf.d,certs}
 COPY conf/nginx/extra.conf.d /etc/nginx/extra.conf.d
 ADD conf/nginx/nginx-site.conf /etc/nginx/sites-available/default.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
-RUN ln -s /etc/nginx/sites-available/default-ssl.conf /etc/nginx/sites-enabled/default-ssl.conf
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
