@@ -28,6 +28,8 @@ RUN wget https://github.com/jwilder/docker-gen/releases/download/$DOCKER_GEN_VER
  && tar -C /usr/local/bin -xvzf docker-gen-linux-amd64-$DOCKER_GEN_VERSION.tar.gz \
   && rm /docker-gen-linux-amd64-$DOCKER_GEN_VERSION.tar.gz
 
+RUN sed -i '/sendfile        on;/a     server_tokens off;' /etc/nginx/nginx.conf
+
 COPY ./files/ /app/
 WORKDIR /app/
 
