@@ -7,7 +7,7 @@ RUN yum clean all
 # Install Kyvaith YUM repo
 RUN curl -s "http://download.opensuse.org/repositories/home:/kyvaith:/Adaptive-Cloud/CentOS_7/home:kyvaith:Adaptive-Cloud.repo" -o /etc/yum.repos.d/Adaptive-Cloud.repo
 
-RUN yum -y install nginx-1.11.2 ca-certificates wget tar
+RUN yum -y install nginx-1.11.2.1 ca-certificates wget tar
 
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
